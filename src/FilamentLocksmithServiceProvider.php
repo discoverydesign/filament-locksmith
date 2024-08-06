@@ -8,9 +8,9 @@ use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 /**
- * Class FilamentGazeServiceProvider
+ * Class FilamentLocksmithServiceProvider
  *
- * @package DiscoveryDesign\FilamentGaze
+ * @package DiscoveryDesign\FilamentLocksmith
  */
 class FilamentLocksmithServiceProvider extends PackageServiceProvider
 {
