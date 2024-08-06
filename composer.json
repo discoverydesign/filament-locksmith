@@ -1,0 +1,27 @@
+{
+    "name": "discoverydesign/filament-locksmith",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "DiscoveryDesign\\FilamentLocksmith\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Discovery Design"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "filament/filament": "^3.0",
+        "spatie/laravel-package-tools": "^1.15.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "DiscoveryDesign\\FilamentLocksmith\\FilamentLocksmithServiceProvider"
+            ]
+        }
+    }
+}
