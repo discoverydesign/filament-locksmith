@@ -64,7 +64,7 @@ class UserResource extends Resource
 ### `->friendly()`
 
 #### Description
-`friendly` is a preloaded generator that creates a user friendly password. This password consists of 3 words that are combinred with '-'.
+`friendly` is a preloaded generator that creates a user friendly password. This password consists of 3 words that are combinred with '-'. E.g `time-shelf-bottle`
 
 ### `->copyable($state)`
 
@@ -81,6 +81,14 @@ class UserResource extends Resource
 
 #### Arguments
 `state` - (optional, bool) If the password should be editable.
+
+### `->generator($func)`
+
+#### Description
+`generator` allows you to define a custom generator that is used to create a password. 
+
+#### Arguments
+`func` - (optional, closure) The function used to generate the password. This function **must** return a string.
 
 
 
