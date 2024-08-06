@@ -4,6 +4,7 @@ namespace DiscoveryDesign\FilamentLocksmith\Forms\Components;
 
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Actions\Action;
+use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Filament\Forms\Components\Component;
 use GenPhrase\Password;
@@ -21,6 +22,7 @@ class PasswordInput extends TextInput
     public bool $isCopyable = false;
     public bool $isEditable = false;
     public bool $isGeneratable = true;
+    public bool $isHashed = true;
 
     public ?\Closure $generatorFn = null;
 
@@ -66,6 +68,20 @@ class PasswordInput extends TextInput
     public function editable($state = true)
     {
         $this->isEditable = $state;
+
+        return $this;
+    }
+
+    // If not using a cast, hash it for them
+    public function hashed($state = true)
+    {
+        $this->isHashed = $state;
+
+        $this->before(function (Set $set, Get $get, Component $component) {
+            if (!$this->isHashed) return;
+            
+            $set($component->getName(), \Hash::make($get($component->getName())));
+        });
 
         return $this;
     }
