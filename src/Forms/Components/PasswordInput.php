@@ -45,10 +45,11 @@ class PasswordInput extends TextInput
                 ->icon('heroicon-m-clipboard')
                 ->color('gray')
                 ->alpineClickHandler(function (Component $component) {
+                    $tooltipText = __("filament-locksmith::locksmith.copied");
                     return <<<JS
                         window.navigator.clipboard.writeText(\$wire.get('{$component->getStatePath()}'));
 
-                        \$tooltip({__('filament-locksmith::locksmith.copied')});
+                        \$tooltip('{$tooltipText}');
                     JS;
                 })
                 ->visible($this->isCopyable)
