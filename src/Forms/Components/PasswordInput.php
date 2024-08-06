@@ -6,6 +6,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Set;
 use Filament\Forms\Components\Component;
+use GenPhrase\Password;
 
 /**
  * Class GazeBanner
@@ -91,6 +92,20 @@ class PasswordInput extends TextInput
     public function generator(\Closure|null $generator = null)
     {
         $this->generatorFn = $generator;
+
+        return $this;
+    }
+
+    // A preloaded generator function that generates a password using friendly names
+    public function friendly()
+    {
+        $this->generator(function () {
+            $gen = new Password();
+            $gen->disableSeparators(true);
+            $gen->disableWordModifier(true);
+
+            return Str($gen->generate(36))->replace(' ', '-');
+        });
 
         return $this;
     }
