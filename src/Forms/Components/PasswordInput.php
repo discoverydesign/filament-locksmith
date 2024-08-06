@@ -49,7 +49,7 @@ class PasswordInput extends TextInput
         $this->isCopyable = $state;
 
         $this->suffixAction(
-            Action::make('copyCostToPrice')
+            Action::make('copy')
                 ->icon('heroicon-m-clipboard')
                 ->color('gray')
                 ->alpineClickHandler(function (Component $component) {
