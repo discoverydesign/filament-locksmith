@@ -19,11 +19,13 @@ class PasswordInput extends TextInput
 {
     public bool $isCopyable = false;
     public bool $isEditable = false;
+    public bool $isGeneratable = true;
+
+    public ?\Closure $generatorFn = null;
 
     protected function setUp(): void
     {
         $this->password();
-
     }
 
     public function getExtraInputAttributes(): array
@@ -65,5 +67,40 @@ class PasswordInput extends TextInput
         $this->isEditable = $state;
 
         return $this;
+    }
+
+    public function generatable()
+    {
+        $this->isGeneratable = true;
+
+        $this->suffixAction(
+            Action::make('generatePassword')
+                ->icon('heroicon-o-arrow-path')
+                ->color('gray')
+                ->action(function(Set $set, Component $component) {
+                    $password = $this->createPassword();
+
+                    $set($component->getName(), $password);
+                })
+                ->visible($this->isGeneratable)
+        );
+
+        return $this;
+    }
+
+    public function generator(\Closure|null $generator = null)
+    {
+        $this->generatorFn = $generator;
+
+        return $this;
+    }
+
+    public function createPassword()
+    {
+        if ($this->generatorFn) {
+            return ($this->generatorFn)();
+        }
+
+        return \Str::password();
     }
 }
