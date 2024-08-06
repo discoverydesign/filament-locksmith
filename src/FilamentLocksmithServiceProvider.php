@@ -31,18 +31,6 @@ class FilamentLocksmithServiceProvider extends PackageServiceProvider
     {
         $package
             ->name('filament-locksmith')
-            ->hasTranslations()
-            ->hasViews();
-    }
-
-    /**
-     * Perform any actions after the package has booted.
-     *
-     * @return void
-     */
-    public function packageBooted(): void {
-        FilamentAsset::register([
-            Css::make('filament-locksmith-stylesheet', __DIR__ . '/../dist/filament-locksmith.css'),
-        ]);
+            ->hasTranslations();
     }
 }

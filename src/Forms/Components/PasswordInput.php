@@ -38,7 +38,7 @@ class PasswordInput extends TextInput
         // We do it this way so it doesn't visually mess with the input container
         if (!$this->isEditable) {
             $extraAttributes['disabled'] = '';
-            $this->placeholder('Generate Password');
+            $this->placeholder(__('filament-locksmith::locksmith.generate'));
         }
 
         return $extraAttributes;
@@ -56,7 +56,7 @@ class PasswordInput extends TextInput
                     return <<<JS
                         window.navigator.clipboard.writeText(\$wire.get('{$component->getStatePath()}'));
 
-                        \$tooltip('Password copied');
+                        \$tooltip({__('filament-locksmith::locksmith.copied')});
                     JS;
                 })
                 ->visible($this->isCopyable)
@@ -79,7 +79,7 @@ class PasswordInput extends TextInput
 
         $this->before(function (Set $set, Get $get, Component $component) {
             if (!$this->isHashed) return;
-            
+
             $set($component->getName(), \Hash::make($get($component->getName())));
         });
 
