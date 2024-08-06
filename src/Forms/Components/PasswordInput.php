@@ -18,11 +18,25 @@ use Filament\Forms\Components\Component;
 class PasswordInput extends TextInput
 {
     public bool $isCopyable = false;
+    public bool $isEditable = false;
 
     protected function setUp(): void
     {
         $this->password();
 
+    }
+
+    public function getExtraInputAttributes(): array
+    {
+        $extraAttributes = parent::getExtraInputAttributes();
+
+        // We do it this way so it doesn't visually mess with the input container
+        if (!$this->isEditable) {
+            $extraAttributes['disabled'] = '';
+            $this->placeholder('Generate Password');
+        }
+
+        return $extraAttributes;
     }
 
     public function copyable($state = true)
@@ -42,6 +56,13 @@ class PasswordInput extends TextInput
                 })
                 ->visible($this->isCopyable)
         );
+
+        return $this;
+    }
+
+    public function editable($state = true)
+    {
+        $this->isEditable = $state;
 
         return $this;
     }
