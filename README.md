@@ -1,19 +1,19 @@
 # Filament Locksmith
 
-🔒 A complete password input field 🤫
+🔒 A feature rich password input field 🤫
 
 ![Packagist Version](https://img.shields.io/packagist/v/discoverydesign/filament-locksmith.svg)
 ![Total Downloads](https://img.shields.io/packagist/dt/discoverydesign/filament-locksmith.svg)
 
-This package allows you to add a feature rich password filed for Filament PHP.
+This package allows you to add a feature rich password field for Filament PHP.
 
 https://packagist.org/packages/discoverydesign/filament-locksmith
 
 ## How to use
 1. Install the package using `composer require discoverydesign/filament-locksmith`
-4. Import the package inside your Filament Form with `use DiscoveryDesign\FilamentLocksmith\Forms\Components\PasswordInput`.
-5. Add the `PasswordInput` form component to your form with `PasswordInput::make()`.
-6. If required, publish the translation files with `php artisan vendor:publish --tag=filament-locksmith-translations`.
+2. Import the package inside your Filament Form with `use DiscoveryDesign\FilamentLocksmith\Forms\Components\PasswordInput`.
+3. Add the `PasswordInput` form component to your form with `PasswordInput::make()`.
+4. If required, publish the translation files with `php artisan vendor:publish --tag=filament-locksmith-translations`.
 
 ## Examples
 
@@ -23,7 +23,7 @@ https://packagist.org/packages/discoverydesign/filament-locksmith
 
 namespace App\Filament\Resources;
 
-use DiscoveryDesign\FilamentGaze\Forms\Components\GazeBanner;
+use DiscoveryDesign\FilamentLocksmith\Forms\Components\PasswordInput;
 // ...
 
 class UserResource extends Resource
