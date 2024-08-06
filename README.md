@@ -85,11 +85,18 @@ class UserResource extends Resource
 ### `->generator($func)`
 
 #### Description
-`generator` allows you to define a custom generator that is used to create a password. 
+`generator` allows you to define a custom generator that is used to create a password.
 
 #### Arguments
 `func` - (optional, closure) The function used to generate the password. This function **must** return a string.
 
+### `->hashed($state)`
+
+#### Description
+`hashed` can be used if the password should be hashed before being stored. **In most cases, you should instead use a cast against your model.**
+
+#### Arguments
+`state` - (optional, bool) If the password should be hashed.
 
 
 ## Author
