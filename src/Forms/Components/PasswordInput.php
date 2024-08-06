@@ -17,10 +17,32 @@ use Filament\Forms\Components\Component;
  */
 class PasswordInput extends TextInput
 {
+    public bool $isCopyable = false;
 
     protected function setUp(): void
     {
         $this->password();
 
+    }
+
+    public function copyable($state = true)
+    {
+        $this->isCopyable = $state;
+
+        $this->suffixAction(
+            Action::make('copyCostToPrice')
+                ->icon('heroicon-m-clipboard')
+                ->color('gray')
+                ->alpineClickHandler(function (Component $component) {
+                    return <<<JS
+                        window.navigator.clipboard.writeText(\$wire.get('{$component->getStatePath()}'));
+
+                        \$tooltip('Password copied');
+                    JS;
+                })
+                ->visible($this->isCopyable)
+        );
+
+        return $this;
     }
 }
