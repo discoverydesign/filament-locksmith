@@ -1,6 +1,8 @@
 # Filament Locksmith
 
-🔒 A feature rich password input field 🤫
+🔒 Passwords made easy in Filament PHP 🤫
+
+![Basic Example](https://raw.githubusercontent.com/discoverydesign/filament-gaze/main/media/2.png)
 
 ![Packagist Version](https://img.shields.io/packagist/v/discoverydesign/filament-locksmith.svg)
 ![Total Downloads](https://img.shields.io/packagist/dt/discoverydesign/filament-locksmith.svg)
@@ -56,7 +58,7 @@ class UserResource extends Resource
 ### `->generatable($state)`
 
 #### Description
-`generatable` can be used to set if this password field should allow for an automatic password to be generated. this by default will generate a 32 character random string.
+`generatable` can be used to set if this password field should allow for an automatic password to be generated. This by default will generate a 32 character random string.
 
 #### Arguments
 `state` - (optional, bool) If the password should be generatable.
@@ -97,6 +99,14 @@ class UserResource extends Resource
 
 #### Arguments
 `state` - (optional, bool) If the password should be hashed.
+
+### `->revealable($func)`
+
+#### Description
+`revealable` can be used to allow the password to be revealed. This is just Filament's built in reveal functionality.
+
+#### Arguments
+`func` - (optional, closure, bool) If the password should be revealable. If a closure is passed, this should return a bool.
 
 
 ## Author
