@@ -2,7 +2,7 @@
 
 🔒 Passwords made easy in Filament PHP 🤫
 
-![Basic Example](https://raw.githubusercontent.com/discoverydesign/filament-gaze/main/media/2.png)
+![Basic Example](https://raw.githubusercontent.com/discoverydesign/filament-locksmith/main/media/2.png)
 
 ![Packagist Version](https://img.shields.io/packagist/v/discoverydesign/filament-locksmith.svg)
 ![Total Downloads](https://img.shields.io/packagist/dt/discoverydesign/filament-locksmith.svg)
