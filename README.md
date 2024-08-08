@@ -90,7 +90,7 @@ class UserResource extends Resource
 `generator` allows you to define a custom generator that is used to create a password.
 
 #### Arguments
-`func` - (optional, closure) The function used to generate the password. This function **must** return a string.
+`func` - (optional, closure | bool) The function used to generate the password. This function **must** return a string.
 
 ### `->hashed($state)`
 
@@ -106,7 +106,7 @@ class UserResource extends Resource
 `revealable` can be used to allow the password to be revealed. This is just Filament's built in reveal functionality.
 
 #### Arguments
-`func` - (optional, closure, bool) If the password should be revealable. If a closure is passed, this should return a bool.
+`func` - (optional, closure | bool) If the password should be revealable. If a closure is passed, this should return a bool.
 
 
 ## Author
