@@ -11,6 +11,13 @@ This package allows you to add a feature rich password field for Filament PHP.
 
 https://packagist.org/packages/discoverydesign/filament-locksmith
 
+## Features
+- Ability to copy password
+- Ability to automatically generate passwords. Default to 32 random character string. 
+- User-friendly preset generator, creates 3 word combo passwords. E.g: `elephant-plant-photo`.
+- Automatically hash password when storing to database. Useful when a cast can't be used.
+- Block password field being editable, forcing a randomly generated password.
+
 ## How to use
 1. Install the package using `composer require discoverydesign/filament-locksmith`
 2. Import the package inside your Filament Form with `use DiscoveryDesign\FilamentLocksmith\Forms\Components\PasswordInput`.
