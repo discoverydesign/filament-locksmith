@@ -122,7 +122,7 @@ class PasswordInput extends TextInput
     public function createPassword()
     {
         if ($this->generatorFn) {
-            return ($this->generatorFn)();
+            return $this->evaluate($this->generatorFn);
         }
 
         return \Str::password();
