@@ -1,6 +1,6 @@
 <?php
 
-namespace DiscoveryDesign\FilamentLocksmith\Forms\Components\Generators;
+namespace DiscoveryDesign\FilamentLocksmith\Generators;
 
 use Filament\Forms;
 use GenPhrase\Password;

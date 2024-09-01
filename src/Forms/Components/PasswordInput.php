@@ -2,9 +2,9 @@
 
 namespace DiscoveryDesign\FilamentLocksmith\Forms\Components;
 
-use DiscoveryDesign\FilamentLocksmith\Forms\Components\Generators\MemorableGenerator;
-use DiscoveryDesign\FilamentLocksmith\Forms\Components\Generators\PinGenerator;
-use DiscoveryDesign\FilamentLocksmith\Forms\Components\Generators\RandomGenerator;
+use DiscoveryDesign\FilamentLocksmith\Generators\MemorableGenerator;
+use DiscoveryDesign\FilamentLocksmith\Generators\PinGenerator;
+use DiscoveryDesign\FilamentLocksmith\Generators\RandomGenerator;
 use Filament\Actions\StaticAction;
 use Filament\Forms;
 use Filament\Forms\Components\Actions\Action;
