@@ -11,19 +11,19 @@ class RandomGenerator extends BaseGenerator
 
     public function __construct()
     {
+        $this->name = __('filament-locksmith::locksmith.random.title');
+
         $this->setOptions([
             Forms\Components\TextInput::make('random_length')
-                ->label('Length')
+                ->label(__('filament-locksmith::locksmith.random.length'))
                 ->default(16)
                 ->type('number')
-                ->required()
-                ->minValue(8)
-                ->maxValue(100),
+                ->required(),
             Forms\Components\Toggle::make('random_numbers')
-                ->label('Numbers')
+                ->label(__('filament-locksmith::locksmith.random.numbers'))
                 ->default(true),
             Forms\Components\Toggle::make('random_symbols')
-                ->label('Symbols')
+                ->label(__('filament-locksmith::locksmith.random.symbols'))
                 ->default(true),
         ]);
     }

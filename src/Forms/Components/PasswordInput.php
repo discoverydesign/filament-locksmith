@@ -5,6 +5,7 @@ namespace DiscoveryDesign\FilamentLocksmith\Forms\Components;
 use DiscoveryDesign\FilamentLocksmith\Forms\Components\Generators\MemorableGenerator;
 use DiscoveryDesign\FilamentLocksmith\Forms\Components\Generators\PinGenerator;
 use DiscoveryDesign\FilamentLocksmith\Forms\Components\Generators\RandomGenerator;
+use Filament\Actions\StaticAction;
 use Filament\Forms;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Component;
@@ -109,6 +110,15 @@ class PasswordInput extends TextInput
     public function addGenerator($generator)
     {
         $this->generators[] = $generator;
+
+        return $this;
+    }
+
+    public function setGenerators($generators)
+    {
+        $this->generators = $generators;
+
+        return $this;
     }
 
     public function getGenerators()
@@ -125,6 +135,7 @@ class PasswordInput extends TextInput
                 Action::make('generatePassword')
                     ->icon('heroicon-o-arrow-path')
                     ->color('gray')
+                    ->label(__('filament-locksmith::locksmith.generate'))
                     ->form(function () {
                         $options = [];
                         $fields = [];
@@ -144,7 +155,7 @@ class PasswordInput extends TextInput
                         return [
                             Forms\Components\TextInput::make('password')
                                 ->label('')
-                                ->disabled(),
+                                ->extraAttributes(['disabled' => '']),
                             Forms\Components\Select::make('type')
                                 ->afterStateUpdated(function (?string $state, $get, $set) {
                                     $generators = collect($this->getGenerators());
@@ -159,6 +170,10 @@ class PasswordInput extends TextInput
                             ...$fields,
                         ];
                     })
+                    ->action(function($data, Set $set, Component $component) {
+                        $set($component->getName(), $data['password']);
+                    })
+                    ->modalSubmitAction(fn (StaticAction $action) => $action->label(__('filament-locksmith::locksmith.use')))
                     ->modalWidth(MaxWidth::Medium)
                     ->visible($this->isGeneratable)
             );
@@ -169,7 +184,7 @@ class PasswordInput extends TextInput
                 Action::make('generatePassword')
                     ->icon('heroicon-o-arrow-path')
                     ->color('gray')
-                    ->action(function (Set $set, Component $component) {
+                    ->action(function(Set $set, Component $component) {
                         $password = $this->createPassword();
 
                         $set($component->getName(), $password);

@@ -8,20 +8,20 @@ use Illuminate\Support\Str;
 
 class MemorableGenerator extends BaseGenerator
 {
-    public string $name = 'Memorable Password';
+    public string $name = '';
 
     public function __construct()
     {
+        $this->name = __('filament-locksmith::locksmith.memorable.title');
+
         $this->setOptions([
             Forms\Components\TextInput::make('memorable_words')
-                ->label('Words')
+                ->label(__('filament-locksmith::locksmith.memorable.words'))
                 ->default(3)
                 ->type('number')
-                ->required()
-                ->minValue(3)
-                ->maxValue(20),
+                ->required(),
             Forms\Components\Select::make('memorable_separator')
-                ->label('Separator')
+                ->label(__('filament-locksmith::locksmith.memorable.separator'))
                 ->options([
                     '-' => 'Hyphen',
                     '_' => 'Underscore',
