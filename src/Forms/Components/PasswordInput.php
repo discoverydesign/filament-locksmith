@@ -114,14 +114,14 @@ class PasswordInput extends TextInput
         return $this;
     }
 
-    public function setGenerators($generators)
+    public function setGenerators(array $generators)
     {
         $this->generators = $generators;
 
         return $this;
     }
 
-    public function getGenerators()
+    public function getGenerators(): array
     {
         return $this->generators;
     }
