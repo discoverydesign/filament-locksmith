@@ -36,10 +36,6 @@ class FilamentLocksmithServiceProvider extends PackageServiceProvider
             ->hasTranslations();
     }
 
-    protected function getPages(): array
-    {
-        return [PasswordAndSecurity::class];
-    }
     public function packageBooted(): void
     {
         Filament::serving(function () {
