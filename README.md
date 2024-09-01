@@ -26,7 +26,7 @@ https://packagist.org/packages/discoverydesign/filament-locksmith
 
 ## Examples
 
-### Example
+### Basic Example
 ```php
 <?php
 
@@ -46,7 +46,6 @@ class UserResource extends Resource
                 PasswordInput::make('password')
                     ->required()
                     ->generatable()
-                    ->editable(false)
                     ->friendly()
                     ->copyable()
                     ->revealable(),
@@ -57,6 +56,28 @@ class UserResource extends Resource
     
     // ...
 }
+```
+
+### Advanced Example
+```php
+PasswordInput::make('password')
+    ->required()
+    ->advanced()
+    ->copyable()
+    ->revealable(),
+```
+
+### Custom Generators Example
+```php
+PasswordInput::make('password')
+    ->required()
+    ->advanced()
+    ->setGenerators([
+        new DiscoveryDesign\FilamentLocksmith\Generators\RandomGenerator,
+        new DiscoveryDesign\FilamentLocksmith\Generators\MemorableGenerator
+    ])
+    ->copyable()
+    ->revealable(),
 ```
 
 
@@ -115,6 +136,34 @@ class UserResource extends Resource
 #### Arguments
 `func` - (optional, closure | bool) If the password should be revealable. If a closure is passed, this should return a bool.
 
+### `->advanced()`
+
+#### Description
+`advanced` will enable advanced mode which allows user configuration of their password, along with a selection of different password types.
+
+#### Arguments
+`state` - (optional, bool) If the password should be hashed.
+
+### `->addGenerator($generator)`
+
+#### Description
+`addGenerator` can be used to add a generator to the advance mode password generator. You should pass in an instance of a class that extends `DiscoveryDesign\FilamentLocksmith\Generators\BaseGenerator`.
+
+#### Arguments
+`generator` - (class, extends BaseGenerator) The generator to add.
+
+### `->setGenerators($generators)`
+
+#### Description
+`setGenerators` will override all existing generators assigned to this PasswordInput and instead use the ones passed in. You should pass in an array of instances of a class that extends `DiscoveryDesign\FilamentLocksmith\Generators\BaseGenerator`.
+
+#### Arguments
+`generators` - (array) The generators to set.
+
+### `->getGenerators()`
+
+#### Description
+`getGenerators` can be used to get an array of all the current generators.
 
 ## Author
 
