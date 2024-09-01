@@ -155,7 +155,20 @@ class PasswordInput extends TextInput
                         return [
                             Forms\Components\TextInput::make('password')
                                 ->label('')
-                                ->extraAttributes(['disabled' => '']),
+                                ->extraAttributes(['disabled' => ''])
+                                ->suffixAction(
+                                    Action::make('regenerate')
+                                        ->icon('heroicon-o-arrow-path')
+                                        ->color('gray')
+                                        ->action(function (?string $state, $get, $set) {
+                                            $generators = collect($this->getGenerators());
+                                            $generator = $generators->first(fn ($generator) => $generator->name === $get('type'));
+
+                                            if ($generator) {
+                                                $set('password', $generator->generate($get));
+                                            }
+                                        })
+                                ),
                             Forms\Components\Select::make('type')
                                 ->afterStateUpdated(function (?string $state, $get, $set) {
                                     $generators = collect($this->getGenerators());
