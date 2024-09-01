@@ -3,6 +3,7 @@
 namespace DiscoveryDesign\FilamentLocksmith\Forms\Components;
 
 use DiscoveryDesign\FilamentLocksmith\Forms\Components\Generators\MemorableGenerator;
+use DiscoveryDesign\FilamentLocksmith\Forms\Components\Generators\PinGenerator;
 use DiscoveryDesign\FilamentLocksmith\Forms\Components\Generators\RandomGenerator;
 use Filament\Forms;
 use Filament\Forms\Components\Actions\Action;
@@ -35,6 +36,7 @@ class PasswordInput extends TextInput
 
         $this->generators[] = new RandomGenerator;
         $this->generators[] = new MemorableGenerator;
+        $this->generators[] = new PinGenerator;
     }
 
     public function getExtraInputAttributes(): array
