@@ -2,10 +2,11 @@
 
 namespace DiscoveryDesign\FilamentLocksmith;
 
-use Filament\Support\Assets\Css;
-use Filament\Support\Facades\FilamentAsset;
+use Filament\Facades\Filament;
+use Filament\Navigation\MenuItem;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
+use DiscoveryDesign\FilamentLocksmith\Pages\PasswordAndSecurity;
 
 /**
  * Class FilamentLocksmithServiceProvider
@@ -31,6 +32,23 @@ class FilamentLocksmithServiceProvider extends PackageServiceProvider
     {
         $package
             ->name('filament-locksmith')
+            ->hasViews()
             ->hasTranslations();
+    }
+
+    protected function getPages(): array
+    {
+        return [PasswordAndSecurity::class];
+    }
+    public function packageBooted(): void
+    {
+        Filament::serving(function () {
+            Filament::registerUserMenuItems([
+                MenuItem::make()
+                    ->label('Password & Security')
+                    ->url(PasswordAndSecurity::getUrl())
+                    ->icon('heroicon-s-lock-closed'),
+            ]);
+        });
     }
 }
