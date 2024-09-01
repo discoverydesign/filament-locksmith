@@ -2,6 +2,8 @@
 
 namespace DiscoveryDesign\FilamentLocksmith;
 
+use Filament\Facades\Filament;
+use Filament\Navigation\MenuItem;
 use Filament\Panel;
 use Filament\Contracts\Plugin;
 use Filament\Support\Assets\Css;
@@ -42,7 +44,14 @@ class FilamentLocksmithPlugin implements Plugin
      * @param Panel $panel The Filament panel instance.
      * @return void
      */
-    public function boot(Panel $panel): void {}
+    public function boot(Panel $panel): void {
+        $panel->userMenuItems([
+           MenuItem::make()
+               ->label('Password & Security')
+               ->url(fn() => PasswordAndSecurity::getUrl())
+               ->icon('heroicon-s-lock-closed')
+        ]);
+    }
 
     /**
      * Register the plugin.
@@ -51,10 +60,8 @@ class FilamentLocksmithPlugin implements Plugin
      * @return void
      */
     public function register(Panel $panel): void {
-
         $panel->pages([
-            PasswordAndSecurity::class
+            PasswordAndSecurity::class,
         ]);
-
     }
 }

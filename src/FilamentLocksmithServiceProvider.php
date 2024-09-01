@@ -38,13 +38,5 @@ class FilamentLocksmithServiceProvider extends PackageServiceProvider
 
     public function packageBooted(): void
     {
-        Filament::serving(function () {
-            Filament::registerUserMenuItems([
-                MenuItem::make()
-                    ->label('Password & Security')
-                    ->url(PasswordAndSecurity::getUrl())
-                    ->icon('heroicon-s-lock-closed'),
-            ]);
-        });
     }
 }
