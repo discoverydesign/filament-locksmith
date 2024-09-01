@@ -26,7 +26,7 @@ https://packagist.org/packages/discoverydesign/filament-locksmith
 
 ## Examples
 
-### Example
+### Basic Example
 ```php
 <?php
 
@@ -46,7 +46,6 @@ class UserResource extends Resource
                 PasswordInput::make('password')
                     ->required()
                     ->generatable()
-                    ->editable(false)
                     ->friendly()
                     ->copyable()
                     ->revealable(),
@@ -57,6 +56,28 @@ class UserResource extends Resource
     
     // ...
 }
+```
+
+### Advanced Example
+```php
+PasswordInput::make('password')
+    ->required()
+    ->advanced()
+    ->copyable()
+    ->revealable(),
+```
+
+### Custom Generators Example
+```php
+PasswordInput::make('password')
+    ->required()
+    ->advanced()
+    ->setGenerators([
+        new DiscoveryDesign\FilamentLocksmith\Generators\RandomGenerator,
+        new DiscoveryDesign\FilamentLocksmith\Generators\MemorableGenerator
+    ])
+    ->copyable()
+    ->revealable(),
 ```
 
 
@@ -115,6 +136,79 @@ class UserResource extends Resource
 #### Arguments
 `func` - (optional, closure | bool) If the password should be revealable. If a closure is passed, this should return a bool.
 
+### `->advanced()`
+
+#### Description
+`advanced` will enable advanced mode which allows user configuration of their password, along with a selection of different password types.
+
+#### Arguments
+`state` - (optional, bool) If the password should be hashed.
+
+### `->addGenerator($generator)`
+
+#### Description
+`addGenerator` can be used to add a generator to the advance mode password generator. You should pass in an instance of a class that extends `DiscoveryDesign\FilamentLocksmith\Generators\BaseGenerator`.
+
+#### Arguments
+`generator` - (class, extends BaseGenerator) The generator to add.
+
+### `->setGenerators($generators)`
+
+#### Description
+`setGenerators` will override all existing generators assigned to this PasswordInput and instead use the ones passed in. You should pass in an array of instances of a class that extends `DiscoveryDesign\FilamentLocksmith\Generators\BaseGenerator`.
+
+#### Arguments
+`generators` - (array) The generators to set.
+
+### `->getGenerators()`
+
+#### Description
+`getGenerators` can be used to get an array of all the current generators.
+
+
+## Creating a generator
+
+If you want to create a generator, you should first start by creating a new class that extends `DiscoveryDesign\FilamentLocksmith\Generators\BaseGenerator`.
+
+Inside your `__construct` you should include any options that you want to use to generate the password. It is encouraged to use a unique name for your form inputs.
+
+The `generate` function should return a string that is the password.
+
+```php
+<?php
+
+namespace App\Filament\Locksmith\Generators;
+
+use Filament\Forms;
+use DiscoveryDesign\FilamentLocksmith\Generators\BaseGenerator;
+use Illuminate\Support\Str;
+
+class MyCustomGenerator extends BaseGenerator
+{
+    public string $name = 'My Custom Generator';
+
+    public function __construct()
+    {
+
+        $this->setOptions([
+            Forms\Components\TextInput::make('mygenerator_length')
+                ->label('length')
+                ->default(20)
+                ->type('number')
+                ->required()
+        ]);
+    }
+
+    public function generate($get)
+    {
+        $length = $get('mygenerator_length');
+
+        return Str::password($length);
+    }
+}
+```
+
+You can then add this generator to your password input with `->addGenerator(new MyCustomGenerator)`.
 
 ## Author
 
