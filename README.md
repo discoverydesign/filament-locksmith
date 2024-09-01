@@ -165,6 +165,49 @@ PasswordInput::make('password')
 #### Description
 `getGenerators` can be used to get an array of all the current generators.
 
+
+## Creating a generator
+
+If you want to create a generator, you should first start by creating a new class that extends `DiscoveryDesign\FilamentLocksmith\Generators\BaseGenerator`.
+
+Inside your `__construct` you should include any options that you want to use to generate the password. It is encouraged to use a unique name for your form inputs.
+
+The `generate` function should return a string that is the password.
+
+```php
+<?php
+
+namespace App\Filament\Locksmith\Generators;
+
+use Filament\Forms;
+use DiscoveryDesign\FilamentLocksmith\Generators\BaseGenerator;
+use Illuminate\Support\Str;
+
+class MyCustomGenerator extends BaseGenerator
+{
+    public string $name = 'My Custom Generator';
+
+    public function __construct()
+    {
+
+        $this->setOptions([
+            Forms\Components\TextInput::make('mygenerator_length')
+                ->label('length')
+                ->default(20)
+                ->type('number')
+                ->required()
+        ]);
+    }
+
+    public function generate($get)
+    {
+        $length = $get('mygenerator_length');
+
+        return Str::password($length);
+    }
+}
+```
+
 ## Author
 
 🚀 [Discovery Design](https://discoverydesign.co.uk)
