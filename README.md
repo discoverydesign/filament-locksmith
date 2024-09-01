@@ -208,6 +208,8 @@ class MyCustomGenerator extends BaseGenerator
 }
 ```
 
+You can then add this generator to your password input with `->addGenerator(new MyCustomGenerator)`.
+
 ## Author
 
 🚀 [Discovery Design](https://discoverydesign.co.uk)
