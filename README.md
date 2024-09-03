@@ -7,7 +7,7 @@
 ![Packagist Version](https://img.shields.io/packagist/v/discoverydesign/filament-locksmith.svg)
 ![Total Downloads](https://img.shields.io/packagist/dt/discoverydesign/filament-locksmith.svg)
 
-This package allows you to add a feature rich password field for Filament PHP.
+This package allows you to add a feature rich password input/field for Filament PHP.
 
 https://packagist.org/packages/discoverydesign/filament-locksmith
 
