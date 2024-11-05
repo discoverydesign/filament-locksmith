@@ -11,6 +11,10 @@ This package allows you to add a feature rich password input/field for Filament 
 
 https://packagist.org/packages/discoverydesign/filament-locksmith
 
+```
+composer require discoverydesign/filament-locksmith
+```
+
 ## Features
 - Ability to copy password
 - Ability to automatically generate passwords. Default to 32 random character string. 
