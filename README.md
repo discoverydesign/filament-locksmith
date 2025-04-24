@@ -1,6 +1,6 @@
 # Filament Locksmith
 
-🔒 Passwords made easy in Filament PHP 🤫
+🔒 Passwords inputs made easy in Filament PHP 🤫
 
 ![Basic Example](https://raw.githubusercontent.com/discoverydesign/filament-locksmith/main/media/2.png)
 
@@ -80,6 +80,15 @@ PasswordInput::make('password')
         new DiscoveryDesign\FilamentLocksmith\Generators\RandomGenerator,
         new DiscoveryDesign\FilamentLocksmith\Generators\MemorableGenerator
     ])
+    ->copyable()
+    ->revealable(),
+```
+
+### Only Required on Create
+```php
+PasswordInput::make('password')
+    ->required(fn($record) => !$record) // Only required if no record
+    ->advanced()
     ->copyable()
     ->revealable(),
 ```
